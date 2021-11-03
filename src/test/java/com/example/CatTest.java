@@ -14,24 +14,18 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CatTest extends Feline {
-
-    @Mock
-    Feline feline;
-
-    Cat cat = new Cat(feline);
+public class CatTest  {
 
     @Test
     public void catSoundTest() {
+        Cat cat = new Cat(new Feline());
         String actualSound = cat.getSound();
         assertEquals("Мяу", actualSound);
     }
 
     @Test
     public void catEatFoodTest() throws Exception {
-        Cat cat = new Cat(feline);
-        List<String> mocList = Arrays.asList("Животные", "Птицы", "Рыба");
-        Mockito.when(cat.getFood()).thenReturn(mocList);
+        Cat cat = new Cat(new Feline());
         List<String> actualList = cat.getFood();
         List<String> expectedList = Arrays.asList("Животные", "Птицы", "Рыба");
         assertEquals(expectedList, actualList);
